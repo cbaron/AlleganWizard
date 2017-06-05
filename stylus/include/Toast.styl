@@ -1,0 +1,35 @@
+.Toast
+    background-color: $ErrorRed
+    border-radius: 5px
+    box-shadow: 0 0 12px #999999
+    color: white
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
+    opacity: 0.8
+    position: fixed
+    padding: 1rem
+    right: 2rem
+    top: 2rem
+    transition: all 3s ease-in-out
+    z-index: 200
+
+    &.success
+        background-color: #4aa252
+
+    >div
+        
+        &:first-child
+            float: left
+            padding: .5rem
+
+            svg
+                fill: white
+                stroke: white
+                height: 2rem
+                width: 2rem
+    
+        &:nth-child(2)
+            float: left
+            padding: 0 .5rem
+
+            >div:first-child
+                font-weight: bold
