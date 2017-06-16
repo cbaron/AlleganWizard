@@ -10,16 +10,11 @@ module.exports = Object.assign( { }, require('../lib/MyObject'), {
 
     apply( method ) {
         if( this[method] ) return this[method]()
+
         if( method !== 'POST' ) return this.respond( { stopChain: true, code: 404 } )
-        /*return method === 'GET'
-            ? Promise.resolve( this.getQs() )
-            : method === 'PATCH' || method === 'POST'
-                ? this.slurpBody()
-                : method === 'DELETE'
-                    ? Promise.resolve()
-                    : this.respond( { stopChain: true, code: 404 } )*/
+
         return this.slurpBody()    
-        .then( () => { console.log( 'after then' ); return this.Db.apply( this ) } )
+        .then( () => this.Db.apply( this ) )
         .then( result => this.Response.apply( this, result ) )
     },
 

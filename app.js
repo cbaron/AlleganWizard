@@ -5,7 +5,6 @@ require('node-env-file')( __dirname + '/.env' )
 const router = require('./router'),
     httpsPort = process.env.HTTPS_PORT || 443
 
-//Promise.all( [ router.resourcePromise, router.collectionPromise ] ).then( () => {
 router.initialize().then( () => {
     console.log('Router initialized')
     require('https')
