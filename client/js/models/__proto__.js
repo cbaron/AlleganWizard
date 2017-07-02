@@ -44,29 +44,30 @@ module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('
         } )
     },
 
-    patch( id, data ) {
-        return this.Xhr( { method: 'patch', id, resource: this.resource, headers: this.headers || {}, data: JSON.stringify( data ) } )
+    patch( id, data, opts={} ) {
+        return this.Xhr( { method: 'patch', id, resource: this.resource, headers: this.headers || {}, data: JSON.stringify( data || this.data ) } )
         .then( response => {
-            this.data = this.data ? this.data.concat( response ) : [ response ]
-
-            if( this.store ) Object.keys( this.store ).forEach( attr => this._store( response, attr ) )
+            if( Array.isArray( this.data ) ) {
+                this.data = this.data ? this.data.concat( response ) : [ response ]
+                if( this.store ) Object.keys( this.store ).forEach( attr => this._store( response, attr ) )
+            }
 
             return Promise.resolve( response )
         } )
     },
 
-    post( model ) {
-        return this.Xhr( { method: 'post', resource: this.resource, headers: this.headers || {}, data: JSON.stringify( model ) } )
+    post( model, opts={} ) {
+        return this.Xhr( { method: 'post', resource: this.resource, headers: this.headers || {}, data: JSON.stringify( model || this.data ) } )
         .then( response => {
-            this.data = this.data ? this.data.concat( response ) : [ response ]
-
-            if( this.store ) Object.keys( this.store ).forEach( attr => this._store( response, attr ) )
+            if( Array.isArray( this.data ) ) {
+                this.data = this.data ? this.data.concat( response ) : [ response ]
+                if( this.store ) Object.keys( this.store ).forEach( attr => this._store( response, attr ) )
+            }
 
             return Promise.resolve( response )
         } )
     },
 
-    /*
     storeBy( data ) {
 
         data.forEach( datum => Object.keys( this.store ).forEach( attr => this._store( datum, attr ) ) )
@@ -78,6 +79,5 @@ module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('
         if( !this.store[ attr ][ datum[ attr ] ] ) this.store[ attr ][ datum[ attr ] ] = [ ]
         this.store[ attr ][ datum[ attr ] ].push( datum )
     }
-    */
 
 } )

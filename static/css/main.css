@@ -84,6 +84,9 @@
   font-size: 1.2rem;
   color: #555;
 }
+.Internet input.error {
+  background-color: #f6c1c1;
+}
 .Internet button {
   display: inline-block;
   background-color: #fff;
@@ -100,6 +103,10 @@
 }
 .Internet button:hover {
   background-color: #c96428;
+  color: #fff;
+}
+.Internet button.submitting {
+  background-color: #d97940;
   color: #fff;
 }
 .Services {
@@ -130,7 +137,7 @@
   list-style-type: disc;
 }
 .Toast {
-  background-color: $ErrorRed;
+  background-color: #b13325;
   border-radius: 5px;
   box-shadow: 0 0 12px #999;
   color: #fff;
@@ -140,7 +147,6 @@
   padding: 1rem;
   right: 2rem;
   top: 2rem;
-  transition: all 3s ease-in-out;
   z-index: 200;
 }
 .Toast.success {
@@ -247,14 +253,6 @@ select:focus,
 button:focus {
   outline: 0;
 }
-.showing {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-.hide {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-}
 .hidden {
   display: none !important;
 }
@@ -280,6 +278,82 @@ button:focus {
   width: 5rem;
   background: #444;
   margin: 2rem 0 2.5rem;
+}
+.animate-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+.animate-out {
+  animation: fadeOut 0.3s ease-in-out;
+}
+.animate-in-slow {
+  animation: fadeIn 3s ease-in-out;
+}
+.animate-out-slow {
+  animation: fadeOut 3s ease-in-out;
+}
+@-moz-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-o-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 @-moz-keyframes blink {
   0% {

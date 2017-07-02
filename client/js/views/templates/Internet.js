@@ -12,9 +12,9 @@ module.exports = () =>
     </div>
     <div class="border"></div>
     <form>
-        <input data-js="name" type="text" id="name" placeholder="Name">
-        <input data-js="contact" type="text" id="contact" placeholder="Email or Phone Number">
-        <input data-js="address" type="text" id="address" placeholder="Address">
+        <input data-js="name" type="text" placeholder="Name">
+        <input data-js="contact" type="text" placeholder="Email or Phone Number">
+        <input data-js="address" type="text" placeholder="Address">
+        <button data-js="submitBtn" type="button">Submit</button>
     </form>
-    <button data-js="submitBtn">Submit</button>
 </div>`

@@ -77,14 +77,6 @@ input, select, button
     &:focus
         outline: 0
 
-.showing
-    opacity: 0
-    transition: opacity .3s ease-in-out
-
-.hide
-    opacity: 0
-    transition: opacity .3s ease-in-out
-
 .hidden
     display: none !important
     
@@ -110,6 +102,32 @@ input, select, button
     width: 5rem
     background: #444
     margin: 2rem 0 2.5rem
+
+.animate-in {
+    animation: fadeIn .3s ease-in-out;
+}
+
+.animate-out {
+    animation: fadeOut .3s ease-in-out;
+}
+
+.animate-in-slow {
+    animation: fadeIn 3s ease-in-out;
+}
+
+.animate-out-slow {
+    animation: fadeOut 3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
 
 @keyframes blink {
     0% {

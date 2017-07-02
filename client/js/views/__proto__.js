@@ -59,18 +59,30 @@ module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('
         return this
     },
 
-    hide() {
-        if( !document.body.contains(this.els.container) || this.isHidden() ) {
-            return Promise.resolve()
-        } else if( this.els.container.classList.contains('hide') ) {
-            return new Promise( resolve => this.once( 'hidden', resolve ) )
-        } else {
-            return new Promise( resolve => {
-                this.onHiddenProxy = e => this.onHidden(resolve)
-                this.els.container.addEventListener( 'transitionend', this.onHiddenProxy )
-                this.els.container.classList.add('hide')
-            } )
-        }
+    hide( isSlow, animate=true ) { return this.hideEl( this.els.container, isSlow, animate ).then( () => this.emit('hidden') ) },
+
+    _hideEl( el, klass, resolve, hash ) {
+        el.removeEventListener( 'animationend', this[ hash ] )
+        el.classList.add('hidden')
+        el.classList.remove( klass )
+        delete this[hash]
+        resolve()
+    },
+
+    hideEl( el, isSlow, animate=true ) {
+        if( this.isHidden( el ) ) return Promise.resolve()
+
+        const time = new Date().getTime(),
+            hash = `${time}Hide`
+        
+        return new Promise( resolve => {
+            if( !animate ) return resolve( el.classList.add('hidden') )
+
+            const klass = `animate-out${ isSlow ? '-slow' : ''}`
+            this[ hash ] = e => this._hideEl( el, klass, resolve, hash )
+            el.addEventListener( 'animationend', this[ hash ] )
+            el.classList.add( klass )
+        } )
     },
 
     htmlToFragment( str ) {
@@ -89,12 +101,9 @@ module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('
         return this.requiresRole && user.data.roles.includes( this.requiresRole )
     },
     
-    isHidden() { return this.els.container.classList.contains('hidden') },
-
-    onHidden( resolve ) {
-        this.els.container.removeEventListener( 'transitionend', this.onHiddenProxy )
-        this.els.container.classList.add('hidden')
-        resolve( this.emit('hidden') )
+    isHidden( el ) {
+        const element = el || this.els.container
+        return element.classList.contains('hidden')
     },
 
     onLogin() {
@@ -106,13 +115,6 @@ module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('
 
     onNavigation() {
         return this.show()
-    },
-
-    onShown( resolve ) {
-        this.els.container.removeEventListener( 'transitionend', this.onShownProxy )
-        if( this.size ) this.size()
-        this.emit('shown')
-        resolve( this.showing = false )
     },
 
     showNoAccess() {
@@ -159,35 +161,31 @@ module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('
         return this
     },
 
-    setupShow( resolve ) {
-        this.onShownProxy = e => this.onShown(resolve)
-        this.els.container.addEventListener( 'transitionend', this.onShownProxy )
-        this.els.container.classList.remove( 'hide' )
+    show( isSlow, animate=true ) { return this.showEl( this.els.container, isSlow, animate ).then( () => this.emit('shown') ) },
+
+    _showEl( el, klass, resolve, hash ) {
+        el.removeEventListener( 'animationend', this[hash] )
+        el.classList.remove( klass )
+        delete this[ hash ]
+        resolve()
     },
 
-    show() {
-        if( this.showing ) return new Promise( resolve => this.once( 'shown', resolve ) )
+    showEl( el, isSlow, animate=true ) {
+        if( !this.isHidden( el ) ) return Promise.resolve()
 
-        const classList = this.els.container.classList,
-              isHidden = classList.contains('hidden'),
-              isHiding = classList.contains('hide')
+        const time = new Date().getTime(),
+            hash = `${time}Show`
 
-        const resolution = ( !isHidden && !isHiding )
-            ? resolve => resolve()
-            : isHidden
-                ? resolve =>
-                    window.requestAnimationFrame( () => {
-                        this.els.container.classList.remove( 'hidden' )
-                        window.requestAnimationFrame( () => this.setupShow( resolve ) )
-                    } )
-                : isHiding
-                    ? resolve => {
-                        this.els.container.removeEventListener( 'transitionend', this.onHiddenProxy )
-                        window.requestAnimationFrame( () => this.setupShow( resolve ) )
-                    }
-                    : resolve => resolve()
+        return new Promise( resolve => {
+            el.classList.remove('hidden')
 
-        return new Promise( resolution )
+            if( !animate ) return resolve()
+
+            const klass = `animate-in${ isSlow ? '-slow' : ''}`
+            this[ hash ] = e => this._showEl( el, klass, resolve, hash )
+            el.addEventListener( 'animationend', this[ hash ] )            
+            el.classList.add( klass )
+        } )        
     },
 
     slurpEl( el ) {

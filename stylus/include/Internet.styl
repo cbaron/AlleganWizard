@@ -17,6 +17,9 @@
         margin-bottom: 2rem
         font-size: 1.2rem
         color: #555
+        
+        &.error
+            background-color: #F6C1C1
 
 
     button
@@ -34,7 +37,11 @@
         transition: all .2s ease-out
         
         &:hover
-            background-color: #c96428
+            background-color: $DarkOrange
+            color: white
+            
+        &.submitting
+            background-color: lighten( $DarkOrange, 15% )
             color: white
         
         

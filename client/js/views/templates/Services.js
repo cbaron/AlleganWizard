@@ -3,9 +3,8 @@ module.exports = () =>
     <h1>Our Services</h1>
     <div class="intro">
         <p>Want to improve your home network? Protect your kids from inappropriate content on the web? Need help exploring
-        your internet service options? Can't figure out why a web page isn't working? Maybe you're a business and could use
-        some assistance on how to present yourself online. From general tech support to complex, specific problems, we've got
-        you covered!</p>
+        your internet service options? Can't figure out why a web page isn't working? Maybe you're a business and want to build
+        a new website or improve your current one. From general tech support to web development, we've got you covered!</p>
     </div>
     <div class="border"></div>
     <div class="categories">
@@ -48,7 +47,8 @@ module.exports = () =>
         <div>
             <h3>Help for Businesses</h3>
             <ul>
-                <li>Marketing and branding</li>
+                <li>Fully customizable websites that will improve your brand and optimize your workflow</li>
+                <li>Setting up company email</li>
                 <li>Server installation</li>
             </ul>
         </div>
