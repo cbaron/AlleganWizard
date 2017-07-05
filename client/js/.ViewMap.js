@@ -4,5 +4,6 @@ module.exports={
 	Home: require('./views/Home'),
 	Internet: require('./views/Internet'),
 	Services: require('./views/Services'),
-	Toast: require('./views/Toast')
+	Toast: require('./views/Toast'),
+	ToastMessage: require('./views/ToastMessage')
 }

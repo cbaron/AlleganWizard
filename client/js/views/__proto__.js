@@ -31,8 +31,8 @@ module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('
         }
     },
 
-    delete() {
-        return this.hide()
+    delete( isSlow, animate=true ) {
+        return this.hide( isSlow, animate )
         .then( () => {
             this.els.container.parentNode.removeChild( this.els.container )
             return Promise.resolve( this.emit('deleted') )
@@ -49,6 +49,9 @@ module.exports = Object.assign( { }, require('../../../lib/MyObject'), require('
 
             if( this.model.meta ) rv.meta = this.model.meta
         }
+
+        if( this.templateOptions ) rv.opts = typeof this.templateOptions === 'function' ? this.templateOptions() : this.templateOptions
+
         return rv
     },
 

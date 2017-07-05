@@ -6,7 +6,8 @@
   "dependencies": {
     "libpq": "^1.8.5",
     "node-env-file": "^0.1.8",
-    "pg": "^6.1.2"
+    "pg": "^6.1.2",
+    "toast": "git://github.com/ScottAP108/Toast.git#master"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",

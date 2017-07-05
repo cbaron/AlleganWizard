@@ -23,7 +23,7 @@ module.exports = Object.assign( {}, require('./__proto__'), {
 
             return this.model.post()
             .then( response => {
-                return this.Toast.showMessage( 'success', "Info sent! We'll keep you posted!" )
+                return this.Toast.createMessage( 'success', "Info sent! We'll keep you posted!" )
                 .then( () => {
                     this.emit( 'navigate', '/' )
                     this.onSubmitEnd()
@@ -31,7 +31,7 @@ module.exports = Object.assign( {}, require('./__proto__'), {
                 } )
             } )
             .catch( e => {
-                this.Toast.showMessage( 'error', e && e.message ? e.message : `There was a problem. Please try again or contact us.` );
+                this.Toast.createMessage( 'error', e && e.message ? e.message : `There was a problem. Please try again or contact us.` );
                 this.onSubmitEnd()
             } )
         } )
@@ -67,7 +67,7 @@ module.exports = Object.assign( {}, require('./__proto__'), {
             if( attr !== 'name' && attr !== 'contact' ) return
 
             if( rv === true && !this.model.validate( attr, el.value ) ) {
-                this.Toast.showMessage( 'error', this.model.fields[ attr ].error )
+                this.Toast.createMessage( 'error', this.model.fields[ attr ].error )
                 el.scrollIntoView( { behavior: 'smooth' } )
                 el.classList.add( 'error' )
                 rv = false
