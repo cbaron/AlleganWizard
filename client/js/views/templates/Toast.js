@@ -1,1 +1,1 @@
-../../../../node_modules/toast/templates/Toast.js
+module.exports = () => `<div></div>`
