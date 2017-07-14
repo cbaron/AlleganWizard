@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-require('node-env-file')( __dirname + '/.env' )
+require('node-env-file')( `${__dirname}/.env` )
       
 const router = require('./router'),
     port =  process.env.HTTP_PORT

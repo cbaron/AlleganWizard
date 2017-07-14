@@ -45,7 +45,7 @@
   display: flex;
   justify-content: center;
 }
-.Home >div:first-child >img {
+.Home >div:first-child >svg {
   width: 85%;
 }
 .Home >div:nth-child(2) {

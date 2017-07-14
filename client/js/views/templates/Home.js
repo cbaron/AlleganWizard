@@ -1,10 +1,8 @@
 module.exports = () =>
 `<div>
+    <div>${require('./lib/logo')}</div>
     <div>
-        <img src="/static/img/logo.svg">
-    </div>
-    <div>
-        <h2>Make Your Tech Problems Magically Disappear!</h2>
+        <h2>what Make Your Tech Problems Magically Disappear!</h2>
         <p>Computers. Can't live with 'em, can't live without 'em. They're a huge part of our lives these days, but unfortunately
         they haven't gotten any less complicated. Things can and do go wrong all the time, and then you end up spending hours
         and hours of your valuable time trying to figure out what the heck happened and fix it. Life's too short for all that frustration.
