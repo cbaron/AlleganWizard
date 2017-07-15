@@ -13,13 +13,9 @@
   display: flex;
   align-items: center;
   background-color: #fff;
-  left: 0;
-  top: 0;
-  position: fixed;
   width: 100%;
   box-shadow: 0px 1px 10px #bbb;
-  padding-left: 3rem;
-  padding-right: 1rem;
+  padding: 1rem 1rem 1rem 3rem;
 }
 .Header .contact {
   flex: 1;
@@ -175,6 +171,38 @@
   background-color: #d97940;
   color: #fff;
 }
+@media (max-width: 900px) {
+  .Internet .info {
+    display: block;
+    flex: initial;
+    text-align: center;
+  }
+  .Internet .border {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .Internet .form {
+    display: block;
+  }
+  .Internet .form input {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+  }
+  .Internet .form form,
+  .Internet .form div {
+    flex: initial;
+  }
+  .Internet .form button {
+    display: block;
+    margin: 0 auto;
+  }
+  .Internet svg {
+    display: block;
+    height: 15rem;
+    margin: 0 auto;
+  }
+}
 .Services {
   padding: 3rem;
 }
@@ -303,9 +331,6 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-div#content {
-  margin-top: 4rem;
 }
 h1,
 h2,

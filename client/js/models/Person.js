@@ -3,6 +3,9 @@ module.exports = Object.assign( {}, require('./__proto__'), {
     data: { },
     
     fields: {
+        address: {
+            error: 'Please enter your address'
+        },
         name: {
             error: 'Please enter your name'
         },
@@ -14,7 +17,9 @@ module.exports = Object.assign( {}, require('./__proto__'), {
     resource: 'person',
 
     validate( field, value ) {
-        const val = value.trim()
+        const val = value.trim();
+
+        if( field === 'address' ) return true
 
         if( field === 'name' && val === "" ) return false
 

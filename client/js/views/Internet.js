@@ -61,11 +61,9 @@ module.exports = Object.assign( {}, require('./__proto__'), {
     validate() {
         let rv = true;
 
-        Object.keys( this.els ).forEach( attr => {        
+        Object.keys( this.model.fields ).forEach( attr => {        
             const el = this.els[ attr ]
-            
-            if( attr !== 'name' && attr !== 'contact' ) return
-
+           
             if( rv === true && !this.model.validate( attr, el.value ) ) {
                 this.Toast.createMessage( 'error', this.model.fields[ attr ].error )
                 el.scrollIntoView( { behavior: 'smooth' } )
