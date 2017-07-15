@@ -4,27 +4,35 @@
   background-color: #60311b;
   padding: 1.5rem 3rem;
 }
+@media (max-width: 767px) {
+  .Footer {
+    text-align: center;
+  }
+}
 .Header {
   display: flex;
   align-items: center;
-  height: 4rem;
   background-color: #fff;
   left: 0;
   top: 0;
   position: fixed;
   width: 100%;
   box-shadow: 0px 1px 10px #bbb;
+  padding-left: 3rem;
+  padding-right: 1rem;
 }
 .Header .contact {
   flex: 1;
-  padding-left: 3rem;
-  display: inline-block;
+  white-space: nowrap;
+}
+.Header .contact span:nth-child(2),
+.Header .contact span:last-child {
+  font-weight: 700;
 }
 .Header ul {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 1rem;
 }
 .Header ul >li {
   color: #c96428;
@@ -41,16 +49,41 @@
   background-color: #c96428;
   transition: background-color 0.3s;
 }
-.Home >div:first-child {
-  display: flex;
-  justify-content: center;
+@media (max-width: 500px) {
+  .Header {
+    font-size: 0.75rem;
+  }
 }
-.Home >div:first-child >svg {
-  width: 85%;
+@media (max-width: 900px) {
+  .Header {
+    display: block;
+    padding: 0rem 1rem;
+  }
+  .Header .contact {
+    display: block;
+    flex: initial;
+    padding-top: 0.5rem;
+    text-align: center;
+  }
+  .Header ul {
+    display: block;
+    text-align: center;
+  }
+  .Header ul li {
+    display: inline-block;
+  }
 }
-.Home >div:nth-child(2) {
-  margin: 1rem auto 2rem;
-  width: 70%;
+@media (min-width: 1400px) {
+  .Header {
+    font-size: 1rem;
+  }
+}
+.Home {
+  margin: 0rem 8rem;
+}
+.Home svg {
+  display: block;
+  margin: 1rem auto;
 }
 .Home h2 {
   color: #1c3580;
@@ -64,14 +97,47 @@
   font-weight: bold;
   text-transform: uppercase;
 }
+@media (max-width: 767px) {
+  .Home {
+    font-size: 1rem;
+    margin: 0rem 3rem;
+  }
+  .Home h2 {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+@media (min-width: 1400px) {
+  .Home {
+    font-size: 1rem;
+  }
+}
 .Internet {
   margin: 3rem;
 }
-.Internet >div:first-child {
-  width: 70%;
+.Internet .info {
+  display: flex;
 }
-.Internet >div:first-child h2 {
+.Internet .info >div:first-child {
+  flex: 7;
+}
+.Internet .info >div:last-child {
+  flex: 3;
+}
+.Internet .info h2 {
   color: #c96428;
+}
+.Internet .form {
+  display: flex;
+}
+.Internet .form form,
+.Internet .form div {
+  flex: 1;
+}
+.Internet .form svg {
+  display: block;
+  height: 15rem;
+  margin: 0 auto;
 }
 .Internet input {
   display: block;
@@ -118,16 +184,25 @@
   font-weight: bold;
 }
 .Services .intro {
-  width: 50%;
+  display: flex;
   margin-bottom: 1rem;
+}
+.Services .intro >div {
+  flex: 1;
+}
+.Services .intro >div svg {
+  height: 10rem;
+  display: block;
+  margin: auto;
 }
 .Services .categories {
   display: flex;
   flex-wrap: wrap;
 }
 .Services .categories >div {
-  width: 45%;
-  margin: 0 2rem 1rem 0;
+  flex: 1;
+  margin-bottom: 2rem;
+  padding: 1rem;
 }
 .Services .categories >div h3 {
   color: #1c3580;
@@ -135,6 +210,22 @@
 }
 .Services .categories >div ul li {
   list-style-type: disc;
+}
+@media (max-width: 767px) {
+  .Services .intro {
+    display: block;
+  }
+  .Services .intro >div {
+    flex: initial;
+  }
+  .Services .categories {
+    display: block;
+  }
+  .Services .categories >div {
+    display: block;
+    flex: initial;
+    padding: 0rem;
+  }
 }
 .Toast {
   position: fixed;

@@ -1,12 +1,29 @@
 .Internet
     margin: 3rem
     
-    >div:first-child
-        width: 70%
+    .info
+        display: flex
+
+        >div:first-child
+            flex: 7
+        
+        >div:last-child
+            flex: 3
         
         h2
             color: $DarkOrange
+       
+    .form
+        display: flex
         
+        form, div
+            flex: 1
+
+        svg
+            display: block
+            height: 15rem
+            margin: 0 auto
+            
     input
         display: block
         width: 30rem

@@ -2,9 +2,11 @@ module.exports = () =>
 `<div>
     <h1>Our Services</h1>
     <div class="intro">
-        <p>Want to improve your home network? Protect your kids from inappropriate content on the web? Need help exploring
-        your internet service options? Can't figure out why a web page isn't working? Maybe you're a business and want to build
-        a new website or improve your current one. From general tech support to web development, we've got you covered!</p>
+        <div>
+            <p>The Wizard spent countless hours in various school basements to learn the science of computing.  He toiled for various companies in all sorts of different scenarios. In the digital realm, there is little he cannot do.  Below you can find a list of common solutions, but he'll be happy to chat with you about any sort of problem, free of charge.</p>
+            <p>The Wizard and his team have got you covered!</p>
+        </div>
+        <div>${require('./lib/wizard')}</div>
     </div>
     <div class="border"></div>
     <div class="categories">
@@ -21,6 +23,8 @@ module.exports = () =>
                 to the internet</li>
             </ul>
         </div>
+    </div>
+    <div class="categories">
         <div>
             <h3>Data Recovery and Backups</h3>
             <ul>
@@ -33,9 +37,11 @@ module.exports = () =>
             <ul>
                 <li>Installation of wired and wireless networks</li>
                 <li>Troubleshooting for internet connection issues</li>
-                <li>Configuration of modems and routers</li>
+                <li>Configuration of modems, routers, printers, mobile hotspots</li>
             </ul>
         </div>
+    </div>
+    <div class="categories">
         <div>
             <h3>Computer Security</h3>
             <ul>
@@ -48,8 +54,9 @@ module.exports = () =>
             <h3>Help for Businesses</h3>
             <ul>
                 <li>Fully customizable websites that will improve your brand and optimize your workflow</li>
-                <li>Setting up company email</li>
-                <li>Server installation</li>
+                <li>Email, Hosting, Content Management, Payment processing, Digitization</li>
+                <li>Image recognition software</li>
+                <li>You name it!</li>
             </ul>
         </div>
     </div>

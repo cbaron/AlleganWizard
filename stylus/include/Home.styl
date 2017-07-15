@@ -1,17 +1,10 @@
 .Home
+    margin: 0rem 8rem
         
-    >div:first-child
-        display: flex
-        justify-content: center
-        
-        >svg
-            width: 85%
-
-    >div:nth-child(2)
-        margin: 1rem auto 2rem
-        width: 70%
-         
-
+    svg
+        display: block
+        margin: 1rem auto
+    
     h2
         color: $DarkBlue
         
@@ -24,3 +17,15 @@
         font-weight: bold
         text-transform: uppercase
 
+@media (max-width: 767px)
+    .Home
+        font-size: 1rem
+        margin: 0rem 3rem
+
+        h2
+            font-size: 1rem
+            text-align: center
+
+@media (min-width: 1400px)
+    .Home
+        font-size: 1rem

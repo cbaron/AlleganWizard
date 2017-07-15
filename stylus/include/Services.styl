@@ -7,16 +7,25 @@
         font-weight: bold
         
     .intro
-        width: 50%
+        display: flex
         margin-bottom: 1rem
-    
+
+        >div
+            flex: 1
+
+            svg
+                height: 10rem
+                display: block
+                margin: auto
+             
     .categories
         display: flex
         flex-wrap: wrap
             
         >div 
-            width: 45%
-            margin: 0 2rem 1rem 0
+            flex: 1
+            margin-bottom: 2rem
+            padding: 1rem
 
             h3
                 color: $DarkBlue
@@ -24,3 +33,21 @@
                 
             ul li
                 list-style-type: disc
+
+
+@media (max-width: 767px)
+    .Services
+        .intro
+            display: block
+
+            >div
+                flex: initial
+
+        .categories
+            display: block
+
+            >div
+                display: block
+                flex: initial
+                padding: 0rem
+            

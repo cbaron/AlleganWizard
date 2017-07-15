@@ -1,7 +1,11 @@
 module.exports = () =>
 `<nav>
     <div class="contact">
-        <div>phone: 123.456.7890 | email: the_wiz@aiw.com</div>
+        <span>phone:</span>
+        <span>937.681.9521</span>
+        <span> | </span>
+        <span>email:</span>
+        <span>the_wiz@alleganwizard.com</span>
     </div>
     <ul data-js="nav">
         <li data-name="home">Home</li>

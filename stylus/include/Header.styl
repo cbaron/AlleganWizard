@@ -1,24 +1,27 @@
 .Header
     display: flex
     align-items: center
-    height: 4rem
     background-color: #fff
     left: 0
     top: 0
     position: fixed
     width: 100%
     box-shadow: 0px 1px 10px #bbb
+    padding-left: 3rem
+    padding-right: 1rem
 
     .contact
         flex: 1
-        padding-left: 3rem
-        display: inline-block
+        white-space: nowrap
+
+        span
+            &:nth-child(2), &:last-child
+                font-weight: 700
     
     ul 
         display: flex
         justify-content: flex-end
         align-items: center
-        padding-right: 1rem
 
         >li
             color: $DarkOrange
@@ -35,7 +38,29 @@
                 background-color: $DarkOrange
                 transition: background-color .3s
                 
-                
-            
 
+@media (max-width: 500px)
+    .Header
+        font-size: .75rem
 
+@media (max-width: 900px)
+    .Header
+        display: block
+        padding: 0rem 1rem
+
+        .contact
+            display: block
+            flex: initial
+            padding-top: .5rem
+            text-align: center
+
+        ul
+            display: block
+            text-align: center
+
+            li
+                display: inline-block
+
+@media (min-width: 1400px)
+    .Header
+        font-size: 1rem
