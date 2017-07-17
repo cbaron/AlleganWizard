@@ -1,0 +1,78 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: iot-production
+  namespace: tellient
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: iot
+    spec:
+      containers:
+      - name: iot-webapp
+        image: registry.tureus.com/iot:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000
+            protocol: TCP
+        env:
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: iot-postgres-production
+              key: PGUSER
+        - name: PGPASSWD
+          valueFrom:
+            secretKeyRef:
+              name: iot-postgres-production
+              key: PGPASSWD
+        - name: PGHOST
+          value: postgres
+        - name: PGPORT
+          value: "5432"
+        - name: GOOGLE_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: iot-google-production
+              key: GOOGLE_API_KEY
+        - name: JWS_SECRET
+          value: WeAreAllGod
+        - name: PORT
+          value: "3000"
+        - name: SALT
+          value: "12"
+        - name: ENV
+          value: "production"
+        - name: COOKIE
+          value: tellient
+        - name: DOMAIN
+          value: iot.tellient.com
+        - name: NAME
+          value: Tellient
+      - name: marketplace
+        command: ["node", "./scripts/realTimeMarketplace.js"]
+        image: registry.tureus.com/iot:latest
+        imagePullPolicy: Always
+        env:
+        - name: PGUSER
+          valueFrom:
+            secretKeyRef:
+              name: iot-postgres-production
+              key: PGUSER
+        - name: PGPASSWD
+          valueFrom:
+            secretKeyRef:
+              name: iot-postgres-production
+              key: PGPASSWD
+        - name: PGHOST
+          value: postgres
+        - name: PGPORT
+          value: "5432"
+        - name: ENV
+          value: "production"
+        - name: DOMAIN
+          value: iot.tellient.com
+        - name: PORT
+          value: "3000"
