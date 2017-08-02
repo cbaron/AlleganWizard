@@ -203,6 +203,23 @@
     margin: 0 auto;
   }
 }
+@media (max-width: 500px) {
+  .Internet .form input {
+    font-size: 0.75rem;
+  }
+  .Internet .form input::-webkit-input-placeholder {
+    font-size: 0.75rem;
+  }
+  .Internet .form input:-moz-placeholder {
+    font-size: 0.75rem;
+  }
+  .Internet .form input::-moz-placeholder {
+    font-size: 0.75rem;
+  }
+  .Internet .form input:-ms-input-placeholder {
+    font-size: 0.75rem;
+  }
+}
 .Services {
   padding: 3rem;
 }
