@@ -1,15 +1,10 @@
-FROM node:8.1
+FROM mhart/alpine-node:8
 
-RUN apt-get update && apt-get install -y \
-      libpq-dev postgresql-client vim && \
-      mkdir /app
+WORKDIR /app
+COPY . .
 
-WORKDIR app
+RUN apk add --no-cache make gcc g++ python git postgresql-dev
 
-ADD package.json /app/package.json
 RUN npm install --production
 
-ADD . /app
-
-RUN mv .env.dummy .env
 CMD ["node", "app.js"]
