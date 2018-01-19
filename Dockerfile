@@ -14,7 +14,7 @@ ENV PGUSER postgres
 ENV PGPORT 5432
 
 # Set the port that the node app will run on
-ENV HTTP_PORT 8000
+ENV HTTP_PORT 80
 
 EXPOSE $HTTP_PORT
 

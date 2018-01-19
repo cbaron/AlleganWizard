@@ -17,7 +17,7 @@ services:
 
     # Ports are exposed here for development only.
     ports:
-      - "8001:8000"
+      - "8001:80"
     depends_on:
       - postgres
     deploy:
