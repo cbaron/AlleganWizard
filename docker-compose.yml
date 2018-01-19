@@ -11,7 +11,7 @@ services:
     deploy:
         replicas: 1
     networks:
-      - webnetwork
+      - alleganwizard_network
   postgres:
     image: postgres:10-alpine
     ports:
@@ -23,7 +23,7 @@ services:
         placement:
             constraints: [node.role == manager]
     networks:
-      - webnetwork
+      - alleganwizard_network
 
 networks:
-    webnetwork:
+    alleganwizard_network:
