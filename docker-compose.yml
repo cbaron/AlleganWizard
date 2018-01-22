@@ -4,32 +4,36 @@ version: '3'
 #   - The application service must be named 'web'.
 #   - The database must define a placement constraint of [node.role == manager]
 #   - The database should define a volume to map its data folder to the hosts '/root/site-data/[projectName]' folder.
-#       This folder must exist before the docker container is started.
-#   - Ports should NOT be mapped here. The nginx-proxy is the only publicly-accessible container on the swarm.
-#       All other containers communicate on Docker's internal network.
-#   - A network need not be defined unless multiple networks are required.  A default network will be created
-#       when this compose file is run.
+#       That folder will be automatically created as long as you use the name 'projectName' to name this service stack:
+#       i.e. swarmbuilder deploy mySwarm --compose-file ./docker-compose.yml --stack-name projectName
+
+#   - Ports should NOT be mapped here. The http-proxy is the only container on the swarm with published ports.
+#       All other containers communicate on the 'http-proxy' overlay network and do not need to publish specific ports.
 
 services:
   web:
     image: futuredays/alleganwizard
     build: .
-
-    # Ports are exposed here for development only.
-    ports:
-      - "8001:80"
     depends_on:
       - postgres
     deploy:
         replicas: 1
+        labels:
+            - "traefik.enable=true"
+            - "traefik.backend=web"
+            - "traefik.frontend.rule=Host:test.smirksoftware.com"
+            - "traefik.port=80"
+            - "traefik.docker.network=http-proxy"
   postgres:
     image: postgres:10-alpine
-    # Database ports should NOT be exposed publicly
-#    ports:
-#      - "5432:5432"
     volumes:
       - /root/site-data/alleganwizard:/var/lib/postgresql/data
     deploy:
         replicas: 1
         placement:
             constraints: [node.role == manager]
+
+networks:
+  default:
+    external:
+      name: http-proxy
